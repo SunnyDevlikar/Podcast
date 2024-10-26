@@ -9,43 +9,31 @@ import LoaderSpinner from "./LoaderSpinner";
 import { Button } from "./ui/button";
 
 const ProfileCard = ({
-  podcastData,
+  podcastCount,
   imageUrl,
   userFirstName,
 }: ProfileCardProps) => {
   const { setAudio } = useAudio();
-
-  const [randomPodcast, setRandomPodcast] = useState<PodcastProps | null>(null);
-
-  const playRandomPodcast = () => {
-    const randomIndex = Math.floor(Math.random() * podcastData.podcasts.length);
-
-    setRandomPodcast(podcastData.podcasts[randomIndex]);
-  };
-
-  useEffect(() => {
-    if (randomPodcast) {
-      setAudio({
-        title: randomPodcast.podcastTitle,
-        audioUrl: randomPodcast.audioUrl || "",
-        imageUrl: randomPodcast.imageUrl || "",
-        author: randomPodcast.author,
-        podcastId: randomPodcast._id,
-      });
-    }
-  }, [randomPodcast, setAudio]);
+  const [imageError, setImageError] = useState(false);
 
   if (!imageUrl) return <LoaderSpinner />;
 
   return (
     <div className="mt-6 flex flex-col gap-6 max-md:items-center md:flex-row">
-      <Image
-        src={imageUrl}
-        width={250}
-        height={250}
-        alt="Podcaster"
-        className="aspect-square rounded-lg"
-      />
+      {!imageError ? (
+        <Image
+          src={imageUrl}
+          width={250}
+          height={250}
+          alt="Podcastr"
+          className="aspect-square rounded-lg"
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        <div className="w-[250px] h-[250px] bg-gray-300 flex items-center justify-center rounded-lg text-4xl font-bold">
+          {userFirstName.charAt(0).toUpperCase()}
+        </div>
+      )}
       <div className="flex flex-col justify-center max-md:items-center">
         <div className="flex flex-col gap-2.5">
           <figure className="flex gap-2 max-md:justify-center">
@@ -71,13 +59,13 @@ const ProfileCard = ({
             alt="headphones"
           />
           <h2 className="text-16 font-semibold text-white-1">
-            {podcastData?.listeners} &nbsp;
-            <span className="font-normal text-white-2">monthly listeners</span>
+            {podcastCount} &nbsp;
+            <span className="font-normal text-white-2">podcasts</span>
           </h2>
         </figure>
-        {podcastData?.podcasts.length > 0 && (
+        {podcastCount > 0 && (
           <Button
-            onClick={playRandomPodcast}
+            onClick={() => console.log("Play random podcast functionality not implemented")}
             className="text-16 bg-orange-1 font-extrabold text-white-1"
           >
             <Image
