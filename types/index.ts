@@ -127,3 +127,9 @@ export type UseDotButtonType = {
   scrollSnaps: number[];
   onDotButtonClick: (index: number) => void;
 };
+
+export interface ProfileCardProps {
+  podcastCount: number;
+  imageUrl: string;
+  userFirstName: string;
+}
