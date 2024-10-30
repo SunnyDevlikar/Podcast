@@ -132,4 +132,8 @@ export interface ProfileCardProps {
   podcastCount: number;
   imageUrl: string;
   userFirstName: string;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7048a93d524032b87cc5ec5dbe129f1e0e30ec00
