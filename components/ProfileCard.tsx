@@ -84,6 +84,3 @@ const ProfileCard = ({
 };
 
 export default ProfileCard;
-=======
-export default ProfileCard;
->>>>>>> 7048a93d524032b87cc5ec5dbe129f1e0e30ec00
