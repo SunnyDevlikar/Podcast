@@ -1,10 +1,10 @@
 
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useAudio } from "@/providers/AudioProvider";
-import { PodcastProps, ProfileCardProps } from "@/types";
+import { ProfileCardProps } from "@/types";
 
 import LoaderSpinner from "./LoaderSpinner";
 import { Button } from "./ui/button";
@@ -14,7 +14,7 @@ const ProfileCard = ({
   imageUrl,
   userFirstName,
 }: ProfileCardProps) => {
-  const { setAudio } = useAudio();
+  //const { setAudio } = useAudio();
   const [imageError, setImageError] = useState(false);
 
   if (!imageUrl) return <LoaderSpinner />;
